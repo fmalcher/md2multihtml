@@ -1,21 +1,17 @@
-const FlatListProcessor = require('./flatListProcessor');
 const Helpers = require('./helpers');
 const FileProcessor = require('./fileProcessor');
 const HeadlinesProcessor = require('./headlinesProcessor');
 const ChaptersProcessor = require('./chaptersProcessor');
 const FlatList = require('./flatList');
+const Config = require('./config');
 
 const argv = require('minimist')(process.argv.slice(2));
 var inputFile = argv._[0] || './sample.md';
 
-var outputDir = './html';
-var templateDir = './templates';
-var assetsDir = './assets';
 
 
-
-FileProcessor.createAndEmptyDir(outputDir);
-FileProcessor.moveAssetsToOutDir(assetsDir, outputDir);
+FileProcessor.createAndEmptyDir(Config.outputDir);
+FileProcessor.moveAssetsToOutDir(Config.assetsDir, Config.outputDir);
 
 let lines = FileProcessor.readLinesFromFile(inputFile);
 
@@ -55,6 +51,6 @@ let chapters = tree
     .map(ChaptersProcessor.insertHtml);
 
 
-chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, outputDir));
+chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, Config.outputDir));
 FileProcessor.createIndexRedirect(chapters[0].hash + '.html');
 
