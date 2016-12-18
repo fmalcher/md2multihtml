@@ -1,0 +1,18 @@
+{
+  "name": "md2multihtml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "md2multihtml.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmalcher/md2multihtml.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "list-to-tree": "0.0.6"
+  }
+}
