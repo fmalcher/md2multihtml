@@ -1,10 +1,3 @@
-//const argv = require('minimist')(process.argv.slice(2));
-const fs = require('fs-extra');
-const path = require('path');
-const rmdir = require('rmdir');
-
-const md = require('markdown').markdown;
-
 const FlatListProcessor = require('./flatListProcessor');
 const Helpers = require('./helpers');
 const FileProcessor = require('./fileProcessor');
