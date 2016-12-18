@@ -16,6 +16,15 @@ class HTMLBuilder {
 
         return navHtml;
     }
+
+    static buildPage(nav, content) {
+        let values = {
+            nav: nav,
+            content: content
+        }
+
+        return TemplateReplacer.replace('skeleton.html', values);
+    }
 }
 
 module.exports = HTMLBuilder;

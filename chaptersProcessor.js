@@ -4,6 +4,7 @@ const md = require('markdown').markdown;
 const HTMLBuilder = require('./htmlBuilder');
 const TemplateReplacer = require('./templateReplacer');
 const FileProcessor = require('./fileProcessor');
+const Config = require('./config');
 
 
 class ChaptersProcessor {
@@ -77,15 +78,13 @@ class ChaptersProcessor {
         return e;
     }
 
-    static buildAndWriteHTML(chapters, outputDir) {
+    static buildAndWriteHTML(chapters) {
         return e => {
-            let values = {
-                nav: HTMLBuilder.buildNavForChapter(chapters, e.index, 'listelement.html'),
-                mdhtml: e.html
-            }
-
-            let fullHtml = TemplateReplacer.replace('skeleton.html', values);
-            FileProcessor.writeToFile(path.join(outputDir, e.hash + '.html'), fullHtml);
+            let fullHtml = HTMLBuilder.buildPage(
+                HTMLBuilder.buildNavForChapter(chapters, e.index, 'listelement.html'),
+                e.html
+            );
+            FileProcessor.writeToFile(path.join(Config.outputDir, e.hash + '.html'), fullHtml);
         }
     }
 }

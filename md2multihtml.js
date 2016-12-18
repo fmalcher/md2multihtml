@@ -1,7 +1,10 @@
+const path = require('path');
+
 const Helpers = require('./helpers');
 const FileProcessor = require('./fileProcessor');
 const HeadlinesProcessor = require('./headlinesProcessor');
 const ChaptersProcessor = require('./chaptersProcessor');
+const Graph = require('./graph');
 const FlatList = require('./flatList');
 const Config = require('./config');
 
@@ -41,6 +44,10 @@ headlines
 let flatList = new FlatList(headlines);
 let tree = flatList.buildTree();
 
+let graph = new Graph(flatList.flatTree);
+graph.buildAndWriteHTML('graph.html');
+
+
 
 let chapters = tree
     .map(ChaptersProcessor.treeNodeToChapter)
@@ -52,6 +59,6 @@ let chapters = tree
     .map(ChaptersProcessor.insertHtml);
 
 
-chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, Config.outputDir));
+chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters));
 FileProcessor.createIndexRedirect(chapters[0].hash + '.html');
 
