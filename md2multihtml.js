@@ -56,7 +56,21 @@ var ltt = new LTT(result, {
     key_id: 'index',
     key_parent: 'parent'
 });
+var tree = ltt.GetTree()[0].child;
 
-var tree = ltt.GetTree();
+
+// find last line of block
+tree = tree.map((e, i, arr) => {
+    e.lastLine = (i < arr.length - 1) ? arr[i + 1].index - 1 : lines.length - 1;
+    return e;
+});
+
+
+
+
+
+console.log(tree);
+
+
 
 console.log(JSON.stringify(tree));
