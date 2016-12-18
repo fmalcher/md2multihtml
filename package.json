@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "list-to-tree": "0.0.6"
+    "list-to-tree": "0.0.6",
+    "markdown": "^0.5.0"
   }
 }

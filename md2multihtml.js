@@ -1,6 +1,7 @@
 //const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
 const LTT = require('list-to-tree');
+const md = require('markdown').markdown;
 
 // read lines from file
 let lines = fs.readFileSync('./sample.md').toString().split('\n');
@@ -38,7 +39,7 @@ for(let i = 0; i < headlines.length; i++) {
    
     } else if(h.rank < lastNode.rank) {
         while(h.rank <= lastNode.rank) {
-            lastNode = result.find(e => e.index == lastNode.parent);
+            lastNode = flatList.find(e => e.index == lastNode.parent);
         }
         h.parent = lastNode.index;
     }
@@ -49,7 +50,7 @@ for(let i = 0; i < headlines.length; i++) {
 
 
 // populate tree from flat list
-var ltt = new LTT(result, {
+var ltt = new LTT(flatList, {
     key_id: 'index',
     key_parent: 'parent'
 });
@@ -65,11 +66,22 @@ tree = tree.map((e, i, arr) => {
 
 // extract chapters from full file
 let chapters = tree.map(e => {
-    return {
-        index: e.index,
-        text: lines.slice(e.index, e.lastLine + 1).join('\n')
-    }
-});
+        return {
+            index: e.index,
+            text: lines.slice(e.index, e.lastLine + 1).join('\n')
+        }
+    })
+    .map(e => {
+        e.html = md.toHTML(e.text)
+        return e;
+    })
+    .forEach(e => {
+        let filename = './html/' + e.index + '.html';
+        fs.writeFileSync(filename, e.html);
+    });
+
+
+
 
 
 
