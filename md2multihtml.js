@@ -2,8 +2,10 @@
 const fs = require('fs');
 const LTT = require('list-to-tree');
 
-
+// read lines from file
 let lines = fs.readFileSync('./sample.md').toString().split('\n');
+
+// transform headlines to objects
 let headlines = lines
     .map((l, i) => {
         return { index: i, text: l }
@@ -18,40 +20,35 @@ let headlines = lines
     });
 
 
-
-
+// initialize root node
 let result = [
-    {
-        index: -1,
-        text: '',
-        rank: 0
-    }
+    { index: -1, text: '', rank: 0 }
 ];
 var lastNode = result[0];
 
+// get parent node for each headline
 for(let i = 0; i < headlines.length; i++) {
     let h = headlines[i];
 
     if(h.rank > lastNode.rank) {
         h.parent = lastNode.index;
-        lastNode = h;
-        result.push(h);
     
     } else if(h.rank == lastNode.rank) {
         h.parent = lastNode.parent;
-        lastNode = h;
-        result.push(h);
    
     } else if(h.rank < lastNode.rank) {
         while(h.rank <= lastNode.rank) {
             lastNode = result.find(e => e.index == lastNode.parent);
         }
         h.parent = lastNode.index;
-        lastNode = h;
-        result.push(h);
     }
+
+    lastNode = h;
+    result.push(h);
 }
 
+
+// populate tree from flat list
 var ltt = new LTT(result, {
     key_id: 'index',
     key_parent: 'parent'
@@ -73,4 +70,3 @@ console.log(tree);
 
 
 
-console.log(JSON.stringify(tree));
