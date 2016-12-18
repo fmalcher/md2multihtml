@@ -32,6 +32,19 @@ let headlines = lines
             .substr(l.rank)
             .trim();
         return l;
+    })
+    .map(l => {
+        let labelLineIndex = l.index + 1;
+        let matches = lines[labelLineIndex].match(/<!--\ ?label:\ ?(.*)\ ?-->/)
+        
+        if(matches) {
+            l.label = matches[1].trim();
+            lines[labelLineIndex] = '';
+        } else {
+            l.label = null;
+        }
+
+        return l;
     });
 
 
