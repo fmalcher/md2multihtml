@@ -63,10 +63,19 @@ tree = tree.map((e, i, arr) => {
 });
 
 
+// extract chapters from full file
+let chapters = tree.map(e => {
+    return {
+        index: e.index,
+        text: lines.slice(e.index, e.lastLine + 1).join('\n')
+    }
+});
 
 
 
-console.log(tree);
+
+
+console.log(chapters);
 
 
 
