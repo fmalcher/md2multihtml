@@ -14,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "list-to-tree": "0.0.6",
-    "markdown": "^0.5.0"
+    "markdown": "^0.5.0",
+    "md5": "^2.2.1",
+    "rmdir": "^1.2.0"
   }
 }

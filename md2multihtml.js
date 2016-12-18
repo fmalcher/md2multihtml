@@ -1,7 +1,21 @@
 //const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
+const rmdir = require('rmdir');
 const LTT = require('list-to-tree');
+const md5 = require('md5');
 const md = require('markdown').markdown;
+
+const TemplateReplacer = require('./templateReplacer');
+const HTMLBuilder = require('./htmlBuilder');
+
+
+var outputDir = './html'
+
+// recreate output folder
+/*rmdir(outputDir, err => {
+    console.log(err);
+});*/
+fs.mkdir(outputDir, () => {});
 
 // read lines from file
 let lines = fs.readFileSync('./sample.md').toString().split('\n');
@@ -68,26 +82,27 @@ tree = tree.map((e, i, arr) => {
 let chapters = tree.map(e => {
         return {
             index: e.index,
-            text: lines.slice(e.index, e.lastLine + 1).join('\n')
+            content: lines.slice(e.index, e.lastLine + 1).join('\n'),
+            headline: e.text
         }
     })
     .map(e => {
-        e.html = md.toHTML(e.text)
+        e.html = md.toHTML(e.content)
         return e;
     })
-    .forEach(e => {
-        let filename = './html/' + e.index + '.html';
-        fs.writeFileSync(filename, e.html);
+    .map(e => {
+        e.filename = md5(e.index) + '.html';
+        return e;
     });
 
+chapters.forEach(e => {
+    let values = {
+        nav: HTMLBuilder.buildNavForChapter(chapters, e.index, 'listelement.html'),
+        mdhtml: e.html
+    }
 
-
-
-
-
-
-
-console.log(chapters);
-
+    let fullHtml = TemplateReplacer.replace('skeleton.html', values);
+    fs.writeFileSync('./html/' + e.filename, fullHtml);
+});
 
 
