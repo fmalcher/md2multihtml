@@ -1,6 +1,7 @@
 //const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
-const md5 = require('md5');
+const LTT = require('list-to-tree');
+
 
 let lines = fs.readFileSync('./sample.md').toString().split('\n');
 let headlines = lines
@@ -16,6 +17,9 @@ let headlines = lines
         return l;
     });
 
+
+
+
 let result = [
     {
         index: -1,
@@ -24,9 +28,6 @@ let result = [
     }
 ];
 var lastNode = result[0];
-
-
-
 
 for(let i = 0; i < headlines.length; i++) {
     let h = headlines[i];
@@ -51,5 +52,11 @@ for(let i = 0; i < headlines.length; i++) {
     }
 }
 
+var ltt = new LTT(result, {
+    key_id: 'index',
+    key_parent: 'parent'
+});
 
-console.log((result));
+var tree = ltt.GetTree();
+
+console.log(JSON.stringify(tree));
