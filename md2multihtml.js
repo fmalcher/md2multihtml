@@ -5,6 +5,8 @@ const HeadlinesProcessor = require('./headlinesProcessor');
 const ChaptersProcessor = require('./chaptersProcessor');
 const FlatList = require('./flatList');
 
+const argv = require('minimist')(process.argv.slice(2));
+var inputFile = argv._[0] || './sample.md';
 
 var outputDir = './html';
 var templateDir = './templates';
@@ -15,8 +17,7 @@ var assetsDir = './assets';
 FileProcessor.createAndEmptyDir(outputDir);
 FileProcessor.moveAssetsToOutDir(assetsDir, outputDir);
 
-
-let lines = FileProcessor.readLinesFromFile('./sample.1.md');
+let lines = FileProcessor.readLinesFromFile(inputFile);
 
 
 // transform headlines to objects
