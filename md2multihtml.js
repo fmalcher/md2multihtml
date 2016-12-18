@@ -21,10 +21,10 @@ let headlines = lines
 
 
 // initialize root node
-let result = [
+let flatList = [
     { index: -1, text: '', rank: 0 }
 ];
-var lastNode = result[0];
+var lastNode = flatList[0];
 
 // get parent node for each headline
 for(let i = 0; i < headlines.length; i++) {
@@ -44,7 +44,7 @@ for(let i = 0; i < headlines.length; i++) {
     }
 
     lastNode = h;
-    result.push(h);
+    flatList.push(h);
 }
 
 
