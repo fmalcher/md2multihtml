@@ -1,9 +1,11 @@
 //const argv = require('minimist')(process.argv.slice(2));
-const fs = require('fs');
+const fs = require('fs-extra');
+const path = require('path');
 const rmdir = require('rmdir');
 const LTT = require('list-to-tree');
 const md5 = require('md5');
 const md = require('markdown').markdown;
+const glob = require('glob');
 
 const TemplateReplacer = require('./templateReplacer');
 const HTMLBuilder = require('./htmlBuilder');
@@ -11,7 +13,23 @@ const FlatListHelper = require('./flatListhelper');
 const Helpers = require('./helpers');
 
 
-var outputDir = './html'
+var outputDir = './html';
+var templateDir = './templates';
+
+
+glob(path.join(__dirname, templateDir, '*.css'), (err, files) => {
+    console.log(files);
+    files.forEach(file => {
+        let fileSplit = file.split('/');
+        let fileName = fileSplit[fileSplit.length - 1];
+        fs.copySync(file, path.join(__dirname, outputDir, fileName));
+    });
+});
+
+
+
+
+
 
 // recreate output folder
 /*rmdir(outputDir, err => {
