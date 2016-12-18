@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-node multimd2html.js <inputfile>
+node multimd2html.js -o <outputdir> <inputfile>
 ```
 
-It will generate HTML files in the output folder `html/`.
+It will generate HTML files in the specified output folder (defaults to `html/`).

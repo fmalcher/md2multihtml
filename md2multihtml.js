@@ -6,7 +6,8 @@ const FlatList = require('./flatList');
 const Config = require('./config');
 
 const argv = require('minimist')(process.argv.slice(2));
-var inputFile = argv._[0] || './sample.md';
+var inputFile = argv._[0] || Config.inputFile;
+if(argv.o) Config.outputDir = argv.o;
 
 
 

@@ -1,5 +1,6 @@
 module.exports = {
     templateDir: './templates',
     assetsDir: './assets',
-    outputDir: './html'
+    outputDir: './html',
+    inputFile: './sample.md'
 };
