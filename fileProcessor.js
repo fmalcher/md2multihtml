@@ -4,6 +4,7 @@ const path = require('path');
 const rmdirSync = require('rmdir-sync');
 
 const Helpers = require('./helpers');
+const TemplateReplacer = require('./templateReplacer');
 
 
 class FileProcessor {
@@ -31,6 +32,17 @@ class FileProcessor {
     static readLinesFromFile(file) {
         return fs.readFileSync(file).toString().split('\n');
     }
+
+    static createIndexRedirect(url) {
+        let html = TemplateReplacer.replace('index.html', {url: url})
+        this.writeToFile(path.join('./html', 'index.html'), html);
+    }
+
+    static writeToFile(file, content) {
+        fs.writeFileSync(file, content);
+    }
+
+
 }
 
 module.exports = FileProcessor;

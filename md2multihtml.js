@@ -56,5 +56,5 @@ let chapters = tree
 
 
 chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, outputDir));
-
+FileProcessor.createIndexRedirect(chapters[0].hash + '.html');
 

@@ -1,9 +1,9 @@
-const fs = require('fs');
 const path = require('path');
 const md = require('markdown').markdown;
 
 const HTMLBuilder = require('./htmlBuilder');
 const TemplateReplacer = require('./templateReplacer');
+const FileProcessor = require('./fileProcessor');
 
 
 class ChaptersProcessor {
@@ -85,7 +85,7 @@ class ChaptersProcessor {
             }
 
             let fullHtml = TemplateReplacer.replace('skeleton.html', values);
-            fs.writeFileSync(path.join(outputDir, e.hash + '.html'), fullHtml);
+            FileProcessor.writeToFile(path.join(outputDir, e.hash + '.html'), fullHtml);
         }
     }
 }
