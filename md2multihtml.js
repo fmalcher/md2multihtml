@@ -22,6 +22,7 @@ fs.mkdir(outputDir, () => {});
 // read lines from file
 let lines = fs.readFileSync('./sample.1.md').toString().split('\n');
 
+
 // transform headlines to objects
 let headlines = lines
     .map((l, i) => {
@@ -50,6 +51,13 @@ let headlines = lines
     .map(l => {
         l.hash = md5(l.index + l.text);
         return l;
+    });
+
+
+headlines
+    .filter(e => e.label)
+    .forEach(e => {
+        lines[e.index] += '{label-' + e.label + '}';
     });
 
 
@@ -127,9 +135,29 @@ let chapters = tree.map(e => {
         return e;
     })
     .map(e => {
-        e.html = md.toHTML(e.content)
+        e.htmlTree = md.toHTMLTree(e.content)
+        return e;
+    })
+    .map(e => {
+        e.htmlTree = e.htmlTree.map(h => {
+            let [tagName, content] = h;
+            if(tagName.match(/h[0-9]/) && (matches = content.match(/(.*)\{label-(.*?)\}/))) {
+                console.log(matches);
+                let [, headlineText, label] = matches;
+                
+                h.splice(1, 0, {id: label});
+                h[2] = headlineText;
+            }
+            return h;
+        });
+
+        return e;
+    })
+    .map(e => {
+        e.html = md.renderJsonML(e.htmlTree);
         return e;
     });
+
 
 chapters.forEach(e => {
     let values = {

@@ -156,6 +156,7 @@ iuvencam! Vulnusque fuit quaesitae: huc intrat Olenios,
     }
 
 ## Ait veterem oblivia qui tamen praeceps iurant
+<!-- label: corpore -->
 
 *Optima* caput, victa radix lenis spumantia exstabat colebat, mihi. Te ardente
 in primis saxo bacae *sollicitis* adspicit, non haut iacet.
@@ -176,7 +177,6 @@ labare. Pelion Bacchiadae atria ad serius abscidit: patrem per carinam nemo vix
 relictum, tot **illuc** retia vocem.
 
 ### Corpore orat voce dat
-<!-- label: corpore -->
 
 Non in simplex teloque ut spectat equosque visus, alis incurva quam cultor,
 respondere aptabat meruit. Tridente illa. Quae ipse precor commenta incrementa
