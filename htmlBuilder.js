@@ -6,7 +6,7 @@ class HTMLBuilder {
 
         chapters.forEach(e => {
             let values = {
-                url: e.filename,
+                url: e.hash + '.html',
                 linktext: e.headline,
                 liclass: (e.index == activeIndex) ? 'active' : ''
             }   

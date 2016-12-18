@@ -7,6 +7,8 @@ const md = require('markdown').markdown;
 
 const TemplateReplacer = require('./templateReplacer');
 const HTMLBuilder = require('./htmlBuilder');
+const FlatListHelper = require('./flatListhelper');
+const Helpers = require('./helpers');
 
 
 var outputDir = './html'
@@ -18,7 +20,7 @@ var outputDir = './html'
 fs.mkdir(outputDir, () => {});
 
 // read lines from file
-let lines = fs.readFileSync('./sample.md').toString().split('\n');
+let lines = fs.readFileSync('./sample.1.md').toString().split('\n');
 
 // transform headlines to objects
 let headlines = lines
@@ -43,7 +45,10 @@ let headlines = lines
         } else {
             l.label = null;
         }
-
+        return l;
+    })
+    .map(l => {
+        l.hash = md5(l.index + l.text);
         return l;
     });
 
@@ -96,15 +101,33 @@ let chapters = tree.map(e => {
         return {
             index: e.index,
             content: lines.slice(e.index, e.lastLine + 1).join('\n'),
-            headline: e.text
+            headline: e.text,
+            hash: e.hash
         }
     })
     .map(e => {
-        e.html = md.toHTML(e.content)
+        let regex = /\[(.*?)\]\(#(.*?)\)/g;
+
+        var m;
+        do {
+            m = regex.exec(e.content);
+            if(m) {
+                let [fullLink, linkText, label] = m;
+
+                let chapterNode = FlatListHelper.findChapterByLabel(label, flatList);
+                if(!chapterNode) continue;
+
+                let destFile = chapterNode.hash + '.html';
+                let newLink = `[${linkText}](${destFile}#${label})`;
+                
+                e.content = e.content.replace(fullLink, newLink);
+            }
+        } while(m)
+
         return e;
     })
     .map(e => {
-        e.filename = md5(e.index) + '.html';
+        e.html = md.toHTML(e.content)
         return e;
     });
 
@@ -115,7 +138,7 @@ chapters.forEach(e => {
     }
 
     let fullHtml = TemplateReplacer.replace('skeleton.html', values);
-    fs.writeFileSync('./html/' + e.filename, fullHtml);
+    fs.writeFileSync('./html/' + e.hash + '.html', fullHtml);
 });
 
 

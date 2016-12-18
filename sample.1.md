@@ -1,8 +1,9 @@
 # Opus temeraria certe Iunone Veneris Nemeaea vestem
 
 ## Ornant dei domui primus aut longe ad
+<!-- label:ornant -->
 
-Lorem markdownum utque Semiramis relecto gener est par excipit cernes fuerat:
+[CORPORE](#corpore) markdownum utque Semiramis relecto gener est par excipit cernes fuerat:
 variatus **triumpha** orbem terga ubi, et, in. Alte ne
 [et](http://ex-aquis.org/et) venefica temerarius, arcumque a dicta Titania et
 stellas, mentemque nec ut infestaque trunci vocalibus efferor.
@@ -175,6 +176,7 @@ labare. Pelion Bacchiadae atria ad serius abscidit: patrem per carinam nemo vix
 relictum, tot **illuc** retia vocem.
 
 ### Corpore orat voce dat
+<!-- label: corpore -->
 
 Non in simplex teloque ut spectat equosque visus, alis incurva quam cultor,
 respondere aptabat meruit. Tridente illa. Quae ipse precor commenta incrementa
@@ -266,7 +268,7 @@ canentis Esse sibi.
         process.supercomputer = integrated - isp_analyst;
     }
 
-Stetit velante vocat dicta mihi [diverso in](http://enim.org/deionidenquetimeo)
+[Stetit velante](#ornant) vocat dicta mihi [diverso in](http://enim.org/deionidenquetimeo)
 putas sanguine indicio sua inpune in deae sua quod gerens solet sinunt. Timore
 cupidisque rapti mundo arcu Parnasia tenuisse fatalem ante figura Phineus
 antiquo tamen! Trunco Actaeon sic quoque fabrae tibi ignavos dixit, mutataeque
