@@ -15,9 +15,7 @@ class FlatList {
 
     buildFlatTree() {        
         // get parent node for each headline
-        for(let i = 0; i < this.elements.length; i++) {
-            let h = this.elements[i];
-
+        this.elements.forEach(h => {
             if(h.rank > this.lastNode.rank) {
                 h.parent = this.lastNode.index;
             
@@ -33,7 +31,7 @@ class FlatList {
 
             this.lastNode = h;
             this.flatTree.push(h);
-        }
+        });
         return this.flatTree;
     }
 

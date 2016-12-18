@@ -8,9 +8,9 @@ class TemplateReplacer {
     static replace(filename, values) {
         let tpl = fs.readFileSync(path.join(Config.templateDir, filename)).toString();
 
-        for(let key in values) {
+        Object.keys(values).forEach(key => {
             tpl = Helpers.replaceAll(tpl, '\{' + key + '\}', values[key]);
-        }
+        });
         return tpl;
     }
 }
