@@ -15,9 +15,20 @@ esdf
 dsf
 ds
 
+```
+static moveAssetsToOutDir(assetsDir, outputDir) {
+    glob(path.join(__dirname, assetsDir, '*'), (err, files) => {
+        files.forEach(file => {
+            let fileName = Helpers.getFilenameFromPath(file);
+            fs.copySync(file, path.join(__dirname, outputDir, fileName));
+        });
+    });
+}
+```
+
 
 ## Abschnitt 1.3
-hfjkdshfkds
+Lorem ipsum `dolor`sit amet
 fdsfdsfdsf
 ds
 
