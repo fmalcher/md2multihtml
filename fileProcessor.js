@@ -1,7 +1,6 @@
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
-const rmdirSync = require('rmdir-sync');
 
 const Helpers = require('./helpers');
 const TemplateReplacer = require('./templateReplacer');
