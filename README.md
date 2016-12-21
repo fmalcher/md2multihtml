@@ -1,5 +1,11 @@
 # md2multihtml
 
+This tool converts a single big markdown document to seperate HTML files.
+The document is split by first-level sections.
+The program creates a navigation bar, displays the document structure as tree graph and takes care of inline links across the document sections.
+
+See a detailed description in [projectdescription.md](projectdescription.md).
+
 ## Usage
 
 ```
