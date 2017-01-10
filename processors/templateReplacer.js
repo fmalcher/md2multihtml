@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const Helpers = require('./helpers');
-const Config = require('./config');
+const Config = require('../config');
 
 class TemplateReplacer {
     static replace(filename, values) {

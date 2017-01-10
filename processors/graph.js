@@ -3,7 +3,7 @@ const path = require('path');
 const HTMLBuilder = require('./htmlBuilder');
 const TemplateReplacer = require('./templateReplacer');
 const FileProcessor = require('./fileProcessor');
-const Config = require('./config');
+const Config = require('../config');
 
 
 class Graph {

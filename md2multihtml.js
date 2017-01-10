@@ -1,11 +1,11 @@
 const path = require('path');
 
-const Helpers = require('./helpers');
-const FileProcessor = require('./fileProcessor');
-const HeadlinesProcessor = require('./headlinesProcessor');
-const ChaptersProcessor = require('./chaptersProcessor');
-const Graph = require('./graph');
-const FlatList = require('./flatList');
+const Helpers = require('./processors/helpers');
+const FileProcessor = require('./processors/fileProcessor');
+const HeadlinesProcessor = require('./processors/headlinesProcessor');
+const ChaptersProcessor = require('./processors/chaptersProcessor');
+const Graph = require('./processors/graph');
+const FlatList = require('./processors/flatList');
 const Config = require('./config');
 
 const argv = require('minimist')(process.argv.slice(2));
