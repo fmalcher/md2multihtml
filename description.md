@@ -1,7 +1,5 @@
-# Entwicklung eines prototypischen Konverters von Single-Markdown zu Multi-HTML
-* Modul Crossmedia-Produktion
-* Philipp Anders, Ferdinand Malcher
-* MIM 15
+# Prototypischer Konverter von Single-Markdown zu Multi-HTML
+[Philipp Anders](https://github.com/philderfuchs), [Ferdinand Malcher](https://github.com/fmalcher)
 
 -------------------- 
 
