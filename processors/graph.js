@@ -30,7 +30,7 @@ class Graph {
             })
     }
 
-    buildAndWriteHTML(file) {
+    buildAndWriteHTML(file, navItems) {
         let values = {
             nodes: JSON.stringify(this.data.nodes),
             edges: JSON.stringify(this.data.edges)
@@ -38,7 +38,7 @@ class Graph {
 
         let contentHtml = TemplateReplacer.replace('graph.html', values);
         let fullHtml = HTMLBuilder.buildPage(
-            '', // TODO
+            HTMLBuilder.buildNavHTML(navItems, 'listelement.html', 'graph'),
             contentHtml
         );
         FileProcessor.writeToFile(path.join(Config.outputDir, file), fullHtml);

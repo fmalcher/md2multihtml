@@ -1,17 +1,15 @@
 const TemplateReplacer = require('./templateReplacer');
 
 class HTMLBuilder {
-    static buildNavForChapter(chapters, activeIndex, listTemplateFile) {
+    static buildNavHTML(navItems, listTemplateFile, activeId) {
         var navHtml = '';
 
-        chapters.forEach(e => {
-            let values = {
-                url: e.hash + '.html',
-                linktext: e.headline,
-                liclass: (e.index == activeIndex) ? 'active' : ''
-            }   
-
-            navHtml += TemplateReplacer.replace(listTemplateFile, values);
+        navItems.forEach(itemO => {
+            let item = Object.assign({}, itemO);
+            if(item.id === activeId) {
+                item.liclass = 'active';
+            };
+            navHtml += TemplateReplacer.replace(listTemplateFile, item);
         });
 
         return navHtml;

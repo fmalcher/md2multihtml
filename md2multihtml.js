@@ -6,6 +6,7 @@ const HeadlinesProcessor = require('./processors/headlinesProcessor');
 const ChaptersProcessor = require('./processors/chaptersProcessor');
 const Graph = require('./processors/graph');
 const FlatList = require('./processors/flatList');
+const NavItem = require('./processors/navItem');
 const Config = require('./config');
 
 const argv = require('minimist')(process.argv.slice(2));
@@ -14,8 +15,8 @@ if(argv.o) Config.outputDir = argv.o;
 
 
 
-FileProcessor.createAndEmptyDir(Config.outputDir);
-FileProcessor.moveAssetsToOutDir(Config.assetsDir, Config.outputDir);
+FileProcessor.createAndEmptyDir(path.join(__dirname, Config.outputDir));
+FileProcessor.moveAssetsToOutDir(path.join(__dirname, Config.assetsDir), path.join(__dirname, Config.outputDir));
 
 let lines = FileProcessor.readLinesFromFile(inputFile);
 
@@ -44,10 +45,6 @@ headlines
 let flatList = new FlatList(headlines);
 let tree = flatList.buildTree();
 
-let graph = new Graph(flatList.flatTree);
-graph.buildAndWriteHTML('graph.html');
-
-
 
 let chapters = tree
     .map(ChaptersProcessor.treeNodeToChapter)
@@ -59,6 +56,14 @@ let chapters = tree
     .map(ChaptersProcessor.insertHtml);
 
 
-chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters));
+let navItems = chapters.map(ChaptersProcessor.buildNavItem);
+navItems.push(new NavItem('graph', 'graph.html', 'Strukturgraph'));
+
+
+chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, navItems));
 FileProcessor.createIndexRedirect(chapters[0].hash + '.html');
+
+
+let graph = new Graph(flatList.flatTree);
+graph.buildAndWriteHTML('graph.html', navItems);
 

@@ -8,10 +8,10 @@ const TemplateReplacer = require('./templateReplacer');
 
 class FileProcessor {
     static moveAssetsToOutDir(assetsDir, outputDir) {
-        glob(path.join(__dirname, assetsDir, '*'), (err, files) => {
+        glob(path.join(assetsDir, '*'), (err, files) => {
             files.forEach(file => {
                 let fileName = Helpers.getFilenameFromPath(file);
-                fs.copySync(file, path.join(__dirname, outputDir, fileName));
+                fs.copySync(file, path.join(outputDir, fileName));
             });
         });
     }
