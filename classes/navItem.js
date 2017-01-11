@@ -1,9 +1,9 @@
 class NavItem {
-    constructor(id, url, linktext, liclass) {
+    constructor(id, url, linktext, cssclass) {
         this.id = id;
         this.url = url;
         this.linktext = linktext;
-        this.liclass = liclass || '';
+        this.cssclass = cssclass || '';
     }
 }
 

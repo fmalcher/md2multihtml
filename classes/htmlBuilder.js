@@ -7,7 +7,7 @@ class HTMLBuilder {
         navItems.forEach(itemO => {
             let item = Object.assign({}, itemO);
             if(item.id === activeId) {
-                item.liclass = 'active';
+                item.cssclass = 'active';
             };
             navHtml += TemplateReplacer.replace(listTemplateFile, item);
         });
