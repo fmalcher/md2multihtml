@@ -1,0 +1,23 @@
+.pusher {
+    padding-top: 4em;
+    background-color: #FBFDFE !important;
+}
+
+#mobile-menu-opener {
+    display: none;
+}
+
+#desktop-menu {
+    display: block;
+    position: fixed;
+}
+
+@media only screen and (max-width: 770px) {
+    #mobile-menu-opener {
+        display: block;
+    }
+
+    #desktop-menu {
+        display: none;
+    }
+}

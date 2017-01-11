@@ -3,21 +3,54 @@
 <head>
     <meta charset=utf-8/>
     <title></title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="vis.min.css">
+    <link rel="stylesheet" href="vis/vis.min.css">
+    <!-- semantic-ui framework styling -->
+    <link rel="stylesheet" href="semantic-ui/semantic.min.css">
+    <!-- basic markdown styling -->
+    <link rel="stylesheet" href="css/markdown.css">
+    <!-- own styling, partially overwriting semantics css-->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- semantic-ui depends on jQuery-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- semantic-ui framework Javascript -->
+    <script src="semantic-ui/semantic.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // create sidebar and attach to menu open
+            $('.ui.sidebar').sidebar('attach events', '.header.item');
+        });
+    </script>
 </head>
 
 <body>
-<div class="container">
-    <div class="navigation">
-        <ul>
-            {nav}
-        </ul>
-    </div>
+<!-- Sidebar Menu -->
+<!-- Only visible if window width <= 700 px -->
+<div class="ui vertical sidebar menu" id="mobile-menu">
+    {nav}
+</div>
 
-    <hr>
-    <div class="content">
-        {content}
+<div class="ui large top fixed menu" id="mobile-menu-opener">
+    <a class="header item">
+        <i class="sidebar icon"></i>
+    </a>
+</div>
+
+
+<div class="pusher">
+
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="four wide column">
+                <div class="ui vertical secondary pointing menu" id="desktop-menu">
+                    {nav}
+                </div>
+            </div>
+            <div class="twelve wide column">
+                {content}
+            </div>
+
     </div>
 </div>
 </body>
