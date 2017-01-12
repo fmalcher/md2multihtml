@@ -12,8 +12,17 @@
     position: fixed;
 }
 
-#desktop-menu .active {
+#desktop-menu .item {
+    opacity: 0.5;
+}
+
+#desktop-menu .item:hover {
+    opacity: 1;
+}
+
+#desktop-menu .item.active {
     background-color: white;
+    opacity: 1;
 }
 
 @media only screen and (max-width: 770px) {
@@ -25,3 +34,4 @@
         display: none;
     }
 }
+
