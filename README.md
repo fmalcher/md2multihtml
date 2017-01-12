@@ -8,14 +8,15 @@ See a detailed description in [description.md](description.md).
 
 ## Usage
 
-It will generate HTML files in the specified output folder (defaults to `html/`).
+This will generate HTML files in the specified output folder (defaults to `html/`).
+The output folder will be deleted (!) before.
 
 ```
-node md2multihtml.js -i <inputfile>
+./md2multihtml.js -d -i <inputfile>
 ```
 
 ### Arguments
-* `-o <inputfile>`: process the markdown file `<inputfile>`
+* `-i <inputfile>`: process the markdown file `<inputfile>`
 * `-o <outputdir>`: set the output directory to `<outputdir>`
 * `--delete-outdir=true` or `-d`: delete **(!)** and recreate the whole output dir before processing. **BE CAREFUL WHEN USING THIS!**
 
