@@ -80,7 +80,7 @@ class ChaptersProcessor {
     }
 
     static buildNavItem(e) {
-        return new NavItem(e.hash, e.hash + '.html', e.headline);
+        return new NavItem(e.hash, e.hash + '.html', e.headline, 'file text outline');
     }
 
     static buildAndWriteHTML(chapters, navItems) {

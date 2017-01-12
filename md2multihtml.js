@@ -57,7 +57,7 @@ let chapters = tree
 
 
 let navItems = chapters.map(ChaptersProcessor.buildNavItem);
-navItems.push(new NavItem('graph', 'graph.html', 'Strukturgraph'));
+navItems.push(new NavItem('graph', 'graph.html', 'Strukturgraph', 'fork'));
 
 
 chapters.forEach(ChaptersProcessor.buildAndWriteHTML(chapters, navItems));
