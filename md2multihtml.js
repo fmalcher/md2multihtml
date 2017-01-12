@@ -15,8 +15,17 @@ if(argv.o) Config.outputDir = argv.o;
 
 
 
-FileProcessor.createAndEmptyDir(path.join(__dirname, Config.outputDir));
+
+if(argv['delete-outdir'] || argv['d']) {
+    FileProcessor.deleteAndCreateDir(path.join(__dirname, Config.outputDir));
+}
+
+FileProcessor.createDirIfNotExists(path.join(__dirname, Config.outputDir));
 FileProcessor.moveAssetsToOutDir(path.join(__dirname, Config.assetsDir), path.join(__dirname, Config.outputDir));
+
+
+
+
 
 let lines = FileProcessor.readLinesFromFile(inputFile);
 

@@ -1,5 +1,6 @@
 const glob = require('glob');
 const fs = require('fs-extra');
+const rimraf = require('rimraf');
 const path = require('path');
 
 const Helpers = require('./helpers');
@@ -16,16 +17,16 @@ class FileProcessor {
         });
     }
 
-    static createAndEmptyDir(dirPath) {
+    static deleteAndCreateDir(dirPath) {
         if(fs.existsSync(dirPath)) {
-            fs.readdirSync(dirPath).forEach((file, index) => {
-                var curPath = path.join(dirPath, file);
-                fs.unlinkSync(curPath);
-            });
-            fs.rmdirSync(dirPath);
+            rimraf.sync(dirPath);
         }
+    }
 
-        fs.mkdirSync(dirPath);
+    static createDirIfNotExists(dirPath) {
+        if(!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath);
+        }
     }
 
     static readLinesFromFile(file) {
