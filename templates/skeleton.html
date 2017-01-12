@@ -16,6 +16,23 @@
     <!-- semantic-ui framework Javascript -->
     <script src="semantic-ui/semantic.min.js"></script>
 
+    <!-- katex for display of latex-style math formulas-->
+    <link rel="stylesheet" href="katex/katex.min.css">
+    <script src="katex/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$", right: "$", display: false},
+                    {left: "$$", right: "$$", display: true},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false}
+                ]
+            })
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             // create sidebar and attach to menu open
@@ -39,7 +56,6 @@
 
 
 <div class="pusher">
-
     <div class="ui container">
         <div class="ui stackable grid">
             <div class="four wide column">
@@ -51,6 +67,7 @@
                 {content}
             </div>
 
+        </div>
     </div>
 </div>
 </body>
