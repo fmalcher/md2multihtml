@@ -34,10 +34,10 @@ let lines = FileProcessor.readLinesFromFile(inputFile);
 
 // transform headlines to objects
 let headlines = lines
+    .filter(l => l.startsWith('#'))
     .map((l, i) => {
         return { index: i, text: l }
     })
-    .filter(l => l.text.startsWith('#'))
     .map(HeadlinesProcessor.insertRank)
     .map(HeadlinesProcessor.parseLabelComments(lines))
     .map(HeadlinesProcessor.insertHash);
