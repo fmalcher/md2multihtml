@@ -6,6 +6,16 @@ The program creates a navigation bar, displays the document structure as tree gr
 
 See a detailed description in [description.md](description.md).
 
+## Installation
+
+This tool needs Node.js as runtime environment.
+After having installed Node.js please run the local package installation inside the project folder:
+
+```
+npm install
+```
+
+
 ## Usage
 
 This will generate HTML files in the specified output folder (defaults to `html/`).
